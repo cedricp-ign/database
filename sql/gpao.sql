@@ -328,6 +328,12 @@ BEGIN
     status='running' 
     AND NOT EXISTS (
         SELECT * FROM public.jobs AS j WHERE  projects.id = j.id_project and j.status <> 'done');
+
+	UPDATE projects 
+    SET status='failed' 
+    WHERE 
+    EXISTS (
+        SELECT * FROM public.jobs AS j WHERE  projects.id = j.id_project and j.status = 'failed');
     RETURN NULL;
 END;
 $$;
