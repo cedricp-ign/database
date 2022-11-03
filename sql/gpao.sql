@@ -115,6 +115,11 @@ CREATE FUNCTION public.clean_database() RETURNS void
     AS $$
 BEGIN
   TRUNCATE table projects, sessions CASCADE;
+  ALTER SEQUENCE public.jobdependencies_id_seq RESTART WITH 1;
+  ALTER SEQUENCE public.jobs_id_seq RESTART WITH 1;
+  ALTER SEQUENCE public.project_id_seq RESTART WITH 1;
+  ALTER SEQUENCE public.projectdependencies_id_seq RESTART WITH 1; 
+  ALTER SEQUENCE public.sessions_id_seq RESTART WITH 1;
 END;
 $$;
 
