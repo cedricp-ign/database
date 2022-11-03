@@ -339,6 +339,8 @@ BEGIN
     WHERE 
     EXISTS (
         SELECT * FROM public.jobs AS j WHERE  projects.id = j.id_project and j.status = 'failed');
+	
+	UPDATE projects
 	SET status='running'
 	WHERE
 	status='failed'
